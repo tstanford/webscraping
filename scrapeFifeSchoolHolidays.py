@@ -1,9 +1,12 @@
+import sys
 import requests
 import json
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 
 url = "https://www.fife.gov.uk/kb/docs/articles/education2/schools-in-fife/school-holidays,-term,-and-closure-dates"
+
+
 
 def getEventType(description):
     if description == 'School in-service day':
@@ -40,7 +43,7 @@ def getVcal(holidays):
 
     return cal
 
-def main():
+def main(config):
     r = requests.get(url)
     soup = BeautifulSoup(r.content, 'html.parser')
     content = soup.find_all("div", class_="atcb")
@@ -58,10 +61,25 @@ def main():
             holiday = (description, startDate, endDate)
             holidays.append(holiday)
 
-    csv = getCsv(holidays)
-    vcal = getVcal(holidays)
+    result = ""
+    if config["useCsv"]:
+        result = getCsv(holidays)
+    if config["useIcal"]:
+        result = getVcal(holidays)
 
-    print(vcal)
+    print(result)
 
 if __name__ == '__main__':
-    main()
+
+    args = sys.argv
+    config = {"useCsv":False, "useIcal":True}
+
+    if len(args)>1:
+        if args[1] == '--csv':
+            config["useCsv"] = True
+            config["useIcal"] = False   
+        if args[1] == '--ical':
+            config["useCsv"] = False     
+            config["useIcal"] = True             
+
+    main(config)
