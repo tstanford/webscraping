@@ -15,13 +15,10 @@ This will extract data from Fife Council's web site and will output a list of th
 
 ### Output CSV file
 ```
-scrapeFifeSchoolHolidays.py --csv > holidays.csv
+python scrapeFifeSchoolHolidays.py --csv > holidays.csv
 ```
 
 ## Output ICal file
 ```
-scrapeFifeSchoolHolidays.py --ical > holidays.ics
+python scrapeFifeSchoolHolidays.py --ical > holidays.ics
 ```
-
-The ical file can be imported directly to calendar software. This has been tested with google calendar.
-
