@@ -1,6 +1,6 @@
 # Web Scraping
 
-This repositoty contains various web scraping utilities that I have created that extract data from the web and process it into output data files
+This repository contains various web scraping utilities that I have created that extract data from the web and process it into output data files
 
 ## Installation
 ```
@@ -22,3 +22,12 @@ python scrapeFifeSchoolHolidays.py --csv > holidays.csv
 ```
 python scrapeFifeSchoolHolidays.py --ical > holidays.ics
 ```
+
+## Importing ICal file into google calendar
+
+First of all, generate the ICal file locally, or download the [holidays.ics](./holidays.ics) file 
+
+Then import the ICal file within the settings of Google Calendar. See screenshot below for details.
+
+![Screenshot of Google Calendar](assets/google-calendar-screenshot.png) 
+  
